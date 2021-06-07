@@ -1,4 +1,4 @@
-const { listContacts, getContactById, addContact } = require("./contacts.js");
+const { listContacts, getContactById, addContact,removeContact } = require("./contacts.js");
 const { Command } = require("commander");
 const program = new Command();
 program
@@ -28,7 +28,7 @@ function invokeAction({ action, id, name, email, phone }) {
       break;
 
     case "remove":
-      // ... id
+      removeContact(Number(id))
       break;
 
     default:

@@ -25,7 +25,17 @@ console.log(contactById)
   }
 
   async function removeContact(contactId) {
-    // ...твой код
+    try { const listContact = await fs.readFile(contactsPath, "utf8")
+    const contact=JSON.parse(listContact)
+    const deleteById = contact.filter(({id})=>id!==contactId)
+    console.table(deleteById )
+    //  contact.splice(deleteById, 1);
+    // const contactsList = JSON.stringify(contact)
+    // await fs.writeFile(contactsPath, contactsList)  
+  }
+    catch(err) {console.log(err.message)
+    }
+    
   }
 
   async function addContact(name, email, phone) {
@@ -41,6 +51,6 @@ console.log(contactById)
 module.exports = {
   listContacts,
   getContactById,
-  // removeContact,
+ removeContact,
   addContact  
 };
