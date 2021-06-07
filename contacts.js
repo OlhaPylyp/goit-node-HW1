@@ -7,7 +7,7 @@ const contactsPath = path.join("./db/contact.json");
 async function listContacts() {
   try { const listContact = await fs.readFile(contactsPath, "utf8")
     
-    return console.log(JSON.parse(listContact))
+    return console.table(JSON.parse(listContact))
     }
     catch(err) {console.log(err.message)
     }} 
@@ -23,20 +23,20 @@ async function listContacts() {
     }
   }
 
-//   function removeContact(contactId) {
-//     // ...твой код
-//   }
-
-  async function addContact(name, email, phone) {
-
-
-    try { const listContact = await fs.readFile(contactsPath, "utf8")
-    const contact=JSON.parse(listContact)
-    const contactById = contact.find(({id})=>id===contactId) 
-   return console.log(contactById)
-   
-      }
+  function removeContact(contactId) {
+    // ...твой код
   }
+
+  // async function addContact(name, email, phone) {
+
+
+  //   try { const listContact = await fs.readFile(contactsPath, "utf8")
+  //   const contact=JSON.parse(listContact)
+  //   const contactById = contact.find(({id})=>id===contactId) 
+  //  return console.log(contactById)
+   
+  //     }
+  // }
 module.exports = {
   listContacts,
   getContactById,
