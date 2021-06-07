@@ -3,9 +3,10 @@ const path = require("path");
 const shortid = require("shortid");
 const contactsPath = path.join("./db/contact.json");
 
+const getListContact = ()=>{ return fs.readFile(contactsPath, "utf8")}
 async function listContacts() {
   try {
-    const listContact = await fs.readFile(contactsPath, "utf8");
+    const listContact = await getListContact();
     console.table(JSON.parse(listContact));
   } catch (err) {
     console.log(err.message);
@@ -14,7 +15,7 @@ async function listContacts() {
 
 async function getContactById(contactId) {
   try {
-    const listContact = await fs.readFile(contactsPath, "utf8");
+    const listContact = await getListContact();
     const contact = JSON.parse(listContact);
     const contactById = contact.find(({ id }) => id === contactId);
     console.log(contactById);
