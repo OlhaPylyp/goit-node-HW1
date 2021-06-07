@@ -22,7 +22,7 @@ async function getContactById(contactId) {
   try {
     const listContact = await getListContact();
     const contact = JSON.parse(listContact);
-    const contactById = contact.find(({ id }) => id === contactId);
+    const contactById = contact.find(({ id }) => id.toString()=== contactId);
     console.log(contactById);
     return contactById;
   } catch (err) {
@@ -34,7 +34,7 @@ async function removeContact(contactId) {
   try {
     const listContact = await fs.readFile(contactsPath, "utf8");
     const contact = JSON.parse(listContact);
-    const idDeleteList = contact.filter(({ id }) => id !== contactId);
+    const idDeleteList = contact.filter(({ id }) => id.toString() !== contactId);
     const contactsList = JSON.stringify(idDeleteList);
     await writeToJson(contactsList);
   } catch (err) {
