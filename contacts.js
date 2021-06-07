@@ -3,8 +3,12 @@ const path = require("path");
 const shortid = require("shortid");
 const contactsPath = path.join("./db/contact.json");
 
-const getListContact = ()=>{ return fs.readFile(contactsPath, "utf8")}
-const writeToJson =(data)=>{ return fs.writeFile(contactsPath, data);}
+const getListContact = () => {
+  return fs.readFile(contactsPath, "utf8");
+};
+const writeToJson = (data) => {
+  return fs.writeFile(contactsPath, data);
+};
 async function listContacts() {
   try {
     const listContact = await getListContact();
