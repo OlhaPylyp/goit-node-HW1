@@ -4,6 +4,7 @@ const shortid = require("shortid");
 const contactsPath = path.join("./db/contact.json");
 
 const getListContact = ()=>{ return fs.readFile(contactsPath, "utf8")}
+const writeToJson =(data)=>{ return fs.writeFile(contactsPath, data);}
 async function listContacts() {
   try {
     const listContact = await getListContact();
@@ -31,7 +32,7 @@ async function removeContact(contactId) {
     const contact = JSON.parse(listContact);
     const idDeleteList = contact.filter(({ id }) => id !== contactId);
     const contactsList = JSON.stringify(idDeleteList);
-    await fs.writeFile(contactsPath, contactsList);
+    await writeToJson(contactsList);
   } catch (err) {
     console.log(err.message);
   }
@@ -43,7 +44,7 @@ async function addContact(name, email, phone) {
     const contact = JSON.parse(listContact);
     const contactNew = { id: shortid.generate(), name, email, phone };
     const contactsList = JSON.stringify([contactNew, ...contact], null, "\t");
-    await fs.writeFile(contactsPath, contactsList);
+    await writeToJson(contactsList);
   } catch (err) {
     console.log(err.message);
   }
